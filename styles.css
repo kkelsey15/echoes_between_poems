@@ -1,0 +1,220 @@
+:root {
+  color-scheme: dark;
+  --ink: #101c2b;
+  --ink-soft: #152638;
+  --cream: #e8d6b0;
+  --muted: #a1afba;
+  --line: rgba(218, 215, 196, .15);
+  --li: #6cc0de;
+  --du: #e2ba77;
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html, body { margin: 0; min-width: 320px; min-height: 100%; }
+body {
+  background: var(--ink);
+  color: var(--cream);
+  font-family: "PingFang SC", "Noto Sans CJK SC", "Microsoft YaHei", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.site-shell {
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  min-height: 700px;
+  height: 100vh;
+  height: 100dvh;
+  display: grid;
+  grid-template-rows: 112px minmax(0, 1fr) 82px;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse 52% 48% at 44% 51%, rgba(45, 90, 111, .17), transparent 76%),
+    radial-gradient(ellipse 27% 38% at 84% 78%, rgba(125, 94, 58, .08), transparent 84%),
+    #101c2b;
+}
+.site-shell::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: .55;
+  background-image:
+    radial-gradient(circle at 8% 31%, #e6d4ab 0 1px, transparent 1.6px),
+    radial-gradient(circle at 18% 72%, #c9d8d7 0 .8px, transparent 1.5px),
+    radial-gradient(circle at 31% 19%, #d6d4c8 0 .8px, transparent 1.5px),
+    radial-gradient(circle at 47% 83%, #c2d4d6 0 1px, transparent 1.6px),
+    radial-gradient(circle at 64% 11%, #e8d6b0 0 .8px, transparent 1.5px),
+    radial-gradient(circle at 77% 63%, #d5d2c5 0 .8px, transparent 1.5px),
+    radial-gradient(circle at 91% 27%, #d9d2b6 0 1px, transparent 1.6px);
+}
+
+.site-header {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  padding: 28px 3.5vw 0;
+  border-bottom: 1px solid var(--line);
+}
+.brand h1 {
+  margin: 0;
+  font: 500 clamp(27px, 2.15vw, 36px)/1.12 "Songti SC", "STSong", "Noto Serif CJK SC", serif;
+  letter-spacing: .14em;
+}
+.brand-star { display: inline-block; margin-left: 10px; font: 17px/1 serif; vertical-align: 8px; color: var(--du); }
+.brand p { margin: 7px 0 0 1px; color: #a5b6bd; font: 10px/1.4 Georgia, serif; letter-spacing: .24em; text-transform: uppercase; }
+.header-note { display: flex; align-items: center; gap: 21px; padding-top: 13px; color: #e3d8be; font: 15px/1.5 "Songti SC", "STSong", serif; letter-spacing: .28em; white-space: nowrap; }
+.header-note i { font-style: normal; color: #9aabae; margin: 0 5px; }
+.header-rule { width: 45px; height: 1px; background: rgba(232, 214, 176, .5); }
+
+.main-stage { min-height: 0; display: grid; grid-template-columns: minmax(0, 1fr) clamp(238px, 20.5vw, 310px); }
+.chart-section { min-height: 0; min-width: 0; position: relative; display: flex; flex-direction: column; }
+.section-heading { display: flex; align-items: start; justify-content: space-between; padding: 25px 3.5vw 0; position: relative; z-index: 1; pointer-events: none; }
+.eyebrow { margin: 0 0 9px; color: #aeb8b7; font: 10px/1.4 Georgia, serif; letter-spacing: .25em; }
+.eyebrow span { color: var(--du); padding: 0 6px; }
+.section-heading h2 { margin: 0; color: #dfd9cb; font: 400 clamp(18px, 1.4vw, 23px)/1.35 "Songti SC", "STSong", serif; letter-spacing: .11em; }
+.section-subtitle { color: #8094a3; font: 12px/1.5 "Songti SC", "STSong", serif; letter-spacing: .1em; margin: 8px 0 0; }
+.view-index { display: flex; align-items: baseline; gap: 8px; padding-top: 24px; color: #889ba7; white-space: nowrap; font: 11px/1 Georgia, serif; letter-spacing: .06em; }
+.view-index span:first-child { color: var(--cream); font-size: 25px; }
+.view-index b { font-size: 12px; font-weight: 400; opacity: .4; }
+.chart-frame { min-height: 0; flex: 1; position: relative; margin: -15px 0 0; }
+#network { position: absolute; inset: 0; width: 100%; height: 100%; }
+#network.is-full-revealing canvas { animation: full-star-reveal .6s ease-out both; }
+@keyframes full-star-reveal { from { opacity: 0; } to { opacity: 1; } }
+.side-caption { position: absolute; z-index: 1; top: 53%; display: flex; flex-direction: column; align-items: center; gap: 10px; pointer-events: none; opacity: .58; }
+.side-caption-left { left: 2.8vw; color: var(--li); }
+.side-caption-right { right: 2.8vw; color: var(--du); }
+.side-caption span { writing-mode: vertical-rl; font: 10px/1 Georgia, serif; letter-spacing: .3em; }
+.side-caption strong { writing-mode: vertical-rl; font: 400 15px/1.2 "Songti SC", "STSong", serif; letter-spacing: .27em; }
+.chart-status { position: absolute; top: 54%; left: 50%; transform: translate(-50%, -50%); color: #a9b6bb; font: 13px/1.6 "Songti SC", serif; letter-spacing: .14em; pointer-events: none; }
+.chart-status[hidden] { display: none; }
+
+.detail-panel { min-height: 0; display: flex; flex-direction: column; border-left: 1px solid var(--line); background: rgba(13, 26, 40, .27); padding: 30px 31px 29px; }
+.panel-topline { display: flex; justify-content: space-between; gap: 12px; color: #a2b0b3; font: 10px/1.4 "Songti SC", serif; letter-spacing: .17em; }
+.panel-topline span:last-child { color: #7d9098; font: 10px/1.4 Georgia, serif; letter-spacing: .08em; }
+.panel-content { margin: auto 0; padding-bottom: 30px; }
+.panel-symbol { color: var(--du); font: 56px/1 Georgia, serif; opacity: .75; margin-bottom: 23px; }
+.panel-kicker { margin: 0 0 13px; color: #bdad8e; font: 11px/1.2 "Songti SC", serif; letter-spacing: .26em; }
+.panel-content h2 { margin: 0; font: 400 27px/1.2 "Songti SC", "STSong", serif; letter-spacing: .13em; }
+#detail-description { margin: 23px 0 0; max-width: 21em; color: #9aaaae; font: 13px/1.95 "Songti SC", "STSong", serif; letter-spacing: .025em; }
+.selection { margin-top: 27px; padding-top: 22px; border-top: 1px solid rgba(232,214,176,.23); }
+.selection-poet { margin: 0 0 8px; color: var(--li); font: 12px/1.3 "Songti SC", serif; letter-spacing: .14em; }
+.selection-poet.du-fu { color: var(--du); }
+.selection h3 { margin: 0 0 25px; font: 400 19px/1.5 "Songti SC", serif; letter-spacing: .05em; overflow-wrap: anywhere; }
+.selection dl { margin: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.selection dt { color: #8f9ea5; font-size: 11px; margin-bottom: 6px; }
+.selection dd { margin: 0; color: var(--cream); font: 24px/1.2 Georgia, serif; }
+.panel-footnote { margin: 0; border-top: 1px solid var(--line); padding-top: 20px; color: #728894; font: 11px/1.6 "Songti SC", serif; letter-spacing: .04em; }
+
+/* Third-stage controls stay quiet so the constellation remains the focus. */
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+button, input { font: inherit; }
+button { cursor: pointer; }
+.view-actions { display: flex; align-items: center; gap: 18px; padding-top: 20px; white-space: nowrap; pointer-events: auto; }
+.view-switch { display: flex; align-items: center; gap: 10px; color: #748b97; font: 12px/1.4 "Songti SC", serif; }
+.view-switch button, .text-button { color: #92a7af; border: 0; background: none; padding: 5px 1px; letter-spacing: .08em; }
+.view-switch button:hover, .text-button:hover, .view-switch button:focus-visible, .text-button:focus-visible { color: var(--cream); }
+.view-switch button.is-active { color: var(--cream); border-bottom: 1px solid rgba(232,214,176,.7); }
+.text-button { font: 11px/1.4 "Songti SC", serif; }
+.chart-toolbar { position: absolute; z-index: 4; top: 20px; left: 3.5vw; right: 3.5vw; display: flex; align-items: start; justify-content: space-between; pointer-events: none; }
+.chart-toolbar > * { pointer-events: auto; }
+.search-wrap { position: relative; width: min(284px, 34vw); }
+#poem-search { width: 100%; height: 34px; padding: 0 11px; border: 1px solid rgba(173,194,199,.3); border-radius: 2px; outline: none; background: rgba(12,27,41,.79); color: var(--cream); font-size: 11px; letter-spacing: .04em; }
+#poem-search::placeholder { color: #8197a2; }
+#poem-search:focus { border-color: rgba(232,214,176,.63); }
+#poem-search::-webkit-search-cancel-button { filter: grayscale(1) brightness(2); }
+.search-results { position: absolute; top: 40px; left: 0; width: min(380px, 70vw); max-height: 300px; overflow-y: auto; border: 1px solid rgba(232,214,176,.28); background: rgba(13,29,43,.98); box-shadow: 0 15px 30px rgba(0,0,0,.3); }
+.search-results button { display: block; width: 100%; padding: 11px 13px; border: 0; border-bottom: 1px solid rgba(232,214,176,.09); background: none; color: var(--cream); text-align: left; }
+.search-results button:hover, .search-results button:focus-visible { background: rgba(112,161,174,.14); outline: none; }
+.search-results strong { display: block; font: 13px/1.45 "Songti SC", serif; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.search-results small { display: block; margin-top: 4px; color: #86a1ab; font-size: 10px; }
+.search-results p { margin: 0; padding: 10px 13px; color: #8197a2; font: 11px/1.5 "Songti SC", serif; }
+.return-core { margin-top: 2px; padding: 6px 0; }
+.threshold-control { position: absolute; z-index: 3; left: 3.5vw; bottom: 19px; width: 188px; padding: 12px 14px 9px; border: 1px solid rgba(232,214,176,.13); background: rgba(12,26,40,.82); backdrop-filter: blur(5px); }
+.threshold-control label { display: flex; justify-content: space-between; color: #adb9b9; font: 11px/1.3 "Songti SC", serif; letter-spacing: .09em; }
+.threshold-control output { color: var(--cream); font: 13px/1 Georgia, serif; }
+#threshold { display: block; width: 100%; height: 16px; margin: 8px 0 0; accent-color: #d8c49d; cursor: pointer; }
+.threshold-scale { display: flex; justify-content: space-between; color: #718995; font: 9px/1 Georgia, serif; }
+.detail-panel { overflow: hidden; }
+.panel-content { flex: 1; min-height: 0; overflow-y: auto; margin: 0; padding: clamp(38px, 10vh, 95px) 3px 20px 0; scrollbar-width: thin; scrollbar-color: #536b78 transparent; }
+.detail-panel.has-detail .panel-content { padding-top: 26px; }
+.detail-panel.has-detail .panel-symbol { display: none; }
+.detail-panel.has-detail .panel-kicker { margin-bottom: 9px; }
+.detail-panel.has-detail .panel-content h2 { font-size: 23px; }
+.detail-panel.has-detail #detail-description { margin-top: 16px; }
+.edge-detail { margin-top: 20px; }
+.edge-summary { padding: 0 0 15px; color: #8fa2aa; font: 11px/1.5 "Songti SC", serif; }
+.edge-summary strong { color: var(--cream); font: 16px/1 Georgia, serif; }
+.match-pair { padding: 19px 0 21px; border-top: 1px solid rgba(232,214,176,.2); }
+.match-side + .match-side { margin-top: 21px; }
+.match-poet { margin: 0 0 6px; font: 11px/1.4 "Songti SC", serif; letter-spacing: .16em; }
+.match-poet.li-bai { color: var(--li); }
+.match-poet.du-fu { color: var(--du); }
+.match-title { margin: 0 0 8px; color: #a8b8b9; font: 11px/1.5 "Songti SC", serif; overflow-wrap: anywhere; }
+.match-line { margin: 0; color: #e8dfca; font: 17px/1.65 "Songti SC", "STSong", serif; overflow-wrap: anywhere; }
+.match-similarity { margin: 17px 0 0; color: #93a9ae; font: 11px/1.4 "Songti SC", serif; }
+.match-similarity strong { color: var(--cream); font: 16px/1 Georgia, serif; padding-left: 8px; }
+.selection { margin-top: 24px; }
+
+.site-footer { display: flex; align-items: center; justify-content: space-between; gap: 30px; padding: 0 3.5vw; border-top: 1px solid var(--line); background: rgba(9, 20, 32, .42); }
+.network-stats { display: flex; align-items: baseline; gap: 18px; white-space: nowrap; }
+.network-stats > span:not(.stat-divider):not(.data-note) { display: flex; align-items: baseline; gap: 7px; }
+.network-stats strong { color: var(--cream); font: 27px/1 Georgia, serif; font-variant-numeric: tabular-nums; }
+.network-stats small { color: #9baab0; font: 11px/1 "Songti SC", serif; letter-spacing: .12em; }
+.stat-divider { display: block; width: 1px; height: 20px; align-self: center; background: var(--line); }
+.data-note { margin-left: 2px; color: #718692; font: 10px/1.4 "Songti SC", serif; letter-spacing: .07em; }
+.data-note.is-full { color: #a1b3b7; }
+.footer-legend { display: flex; gap: 23px; color: #b0bac0; font: 11px/1 "Songti SC", serif; white-space: nowrap; }
+.footer-legend span { display: flex; align-items: center; gap: 8px; }
+.legend-dot { width: 7px; height: 7px; border-radius: 50%; display: inline-block; box-shadow: 0 0 9px currentColor; }
+.legend-dot.li-bai { background: var(--li); color: var(--li); }
+.legend-dot.du-fu { background: var(--du); color: var(--du); }
+.footer-hint { margin: 0; color: #9ba9ad; font: 11px/1.4 "Songti SC", serif; letter-spacing: .12em; white-space: nowrap; }
+.footer-hint span { padding: 0 5px; color: #687f8b; }
+
+@media (max-width: 1150px) {
+  .data-note { display: none; }
+  .data-note.is-full { display: inline; font-size: 10px; letter-spacing: 0; }
+  .footer-hint { font-size: 10px; letter-spacing: .04em; }
+  .detail-panel { padding-left: 24px; padding-right: 24px; }
+}
+@media (max-width: 820px) {
+  .site-shell { min-height: 700px; grid-template-rows: 96px minmax(0, 1fr) 70px; }
+  .site-header { padding-top: 25px; }
+  .header-note { font-size: 12px; }
+  .header-rule { display: none; }
+  .main-stage { grid-template-columns: minmax(0, 1fr) 210px; }
+  .section-heading { padding-top: 22px; }
+  .section-subtitle, .view-index { display: none; }
+  .detail-panel { padding: 23px 18px; }
+  .footer-hint { display: none; }
+  .view-actions { gap: 9px; padding-top: 8px; }
+  .view-switch { gap: 5px; font-size: 11px; }
+  .search-wrap { width: 210px; }
+}
+@media (max-width: 600px) {
+  .site-shell { height: auto; min-height: 100dvh; display: flex; flex-direction: column; overflow: visible; }
+  .site-header { min-height: 92px; }
+  .main-stage { display: flex; flex-direction: column; flex: 1; }
+  .chart-section { min-height: 570px; }
+  .chart-frame { min-height: 480px; }
+  .side-caption { display: none; }
+  .detail-panel { min-height: 220px; border-left: 0; border-top: 1px solid var(--line); }
+  .panel-content { margin: 28px 0 10px; padding: 0; }
+  .panel-symbol { display: none; }
+  .panel-footnote { padding-top: 12px; }
+  .site-footer { min-height: 74px; flex-wrap: wrap; justify-content: flex-start; gap:7px 20px; padding-top: 12px; padding-bottom: 12px; }
+  .network-stats { flex-wrap: wrap; gap: 6px 14px; white-space: normal; }
+  .data-note.is-full { flex-basis: 100%; margin-left: 0; }
+  .section-heading { display: block; }
+  .view-actions { margin-top: 8px; padding-top: 0; }
+  .chart-toolbar { top: 15px; }
+  .search-wrap { width: min(270px, 60vw); }
+  .threshold-control { bottom: 15px; }
+  .detail-panel .panel-content { min-height: 150px; max-height: 380px; padding-top: 18px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  #network.is-full-revealing canvas { animation: none; }
+}

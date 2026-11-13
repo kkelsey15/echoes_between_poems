@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#101c2b" />
+    <meta name="description" content="诗间回响：以真实诗句相似关系绘制李白与杜甫的唐诗星图。" />
+    <title>诗间回响 · 李白与杜甫的诗歌互文关系可视化</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="site-shell">
+      <header class="site-header">
+        <div class="brand" aria-label="诗间回响 Echoes Between Poems">
+          <h1>诗间回响<span class="brand-star" aria-hidden="true">✦</span></h1>
+          <p>Echoes Between Poems</p>
+        </div>
+        <div class="header-note">
+          <span class="header-rule" aria-hidden="true"></span>
+          <span>李白 <i>×</i> 杜甫</span>
+        </div>
+      </header>
+
+      <main class="main-stage">
+        <section class="chart-section" aria-labelledby="chart-title">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">THE POETIC CONSTELLATION <span>·</span> 唐诗星图</p>
+              <h2 id="chart-title">两颗诗心，一片星空</h2>
+              <p class="section-subtitle">相似的诗句，让千年以前的文字在此刻相遇。</p>
+            </div>
+            <div class="view-actions">
+              <div class="view-switch" role="group" aria-label="星图视图">
+                <button id="view-core" type="button" class="is-active" aria-pressed="true">核心星图</button>
+                <span aria-hidden="true">/</span>
+                <button id="view-full" type="button" aria-pressed="false">完整星图</button>
+              </div>
+              <button id="reset-view" type="button" class="text-button" title="重置缩放与位置">重置视图</button>
+            </div>
+          </div>
+          <div class="chart-frame">
+            <div class="chart-toolbar">
+              <div class="search-wrap">
+                <label class="sr-only" for="poem-search">搜索诗题、诗人或诗歌ID</label>
+                <input id="poem-search" type="search" placeholder="搜索诗题、诗人或诗歌 ID" autocomplete="off" aria-controls="search-results" aria-expanded="false" />
+                <div id="search-results" class="search-results" hidden></div>
+              </div>
+              <button id="return-core" type="button" class="text-button return-core" hidden>← 返回核心星图</button>
+            </div>
+            <div class="side-caption side-caption-left" aria-hidden="true"><span>LI BAI</span><strong>李白</strong></div>
+            <div id="network" role="img" aria-label="李白与杜甫诗歌互文关系网络图。可拖动节点或画布、滚轮缩放、悬停查看诗题。"></div>
+            <div class="side-caption side-caption-right" aria-hidden="true"><span>DU FU</span><strong>杜甫</strong></div>
+            <div id="chart-status" class="chart-status" role="status">星图正在展开…</div>
+            <div class="threshold-control">
+              <label for="threshold">相似度 ≥ <output id="threshold-value" for="threshold">0.70</output></label>
+              <input id="threshold" type="range" min="0.70" max="1.00" step="0.01" value="0.70" />
+              <div class="threshold-scale"><span>0.70</span><span>1.00</span></div>
+            </div>
+          </div>
+        </section>
+
+        <aside class="detail-panel" aria-labelledby="detail-title">
+          <div class="panel-topline"><span>诗句详情</span><span id="panel-mode">02 / 星图</span></div>
+          <div class="panel-content" tabindex="0" aria-label="诗歌与句对详情，可滚动查看">
+            <div class="panel-symbol" aria-hidden="true">✧</div>
+            <p class="panel-kicker">一诗一星</p>
+            <h2 id="detail-title">循星寻诗</h2>
+            <p id="detail-description">将光标停在星辰上，读一首诗的名字；点击星辰，可在这里查看它在星图中的位置。</p>
+            <div id="selection" class="selection" hidden>
+              <p id="selection-poet" class="selection-poet"></p>
+              <h3 id="selection-title"></h3>
+              <dl>
+                <div><dt>相连诗歌</dt><dd id="selection-degree"></dd></div>
+                <div><dt>相似句对</dt><dd id="selection-matches"></dd></div>
+              </dl>
+            </div>
+            <div id="edge-detail" class="edge-detail" hidden></div>
+          </div>
+          <p class="panel-footnote">点击连线，阅读真实的相似诗句。</p>
+        </aside>
+      </main>
+
+      <footer class="site-footer">
+        <div class="network-stats" aria-live="polite">
+          <span><strong id="poem-count">—</strong><small>首诗歌</small></span>
+          <span class="stat-divider" aria-hidden="true"></span>
+          <span><strong id="link-count">—</strong><small>条关系</small></span>
+          <span id="view-note" class="data-note">核心网络 · 取 degree 最高的 90 首</span>
+        </div>
+        <div class="footer-legend" aria-label="颜色图例">
+          <span><i class="legend-dot li-bai"></i>李白</span>
+          <span><i class="legend-dot du-fu"></i>杜甫</span>
+        </div>
+        <p class="footer-hint">拖动探索 <span>·</span> 滚轮缩放 <span>·</span> 点击查看</p>
+      </footer>
+    </div>
+    <script src="./vendor/echarts.min.js"></script>
+    <script src="./data/full_data.js"></script>
+    <script src="./app.js" defer></script>
+  </body>
+</html>
